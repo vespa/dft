@@ -1,3 +1,54 @@
-{
-	"name" : "teste"
-}
+[
+    {
+        "_id" : 305, 
+        "name" : "Rita Noronha Silva",
+        "sex" : "Female",
+        "cpf" : "22.222.222-2",
+        "phone":[
+            {
+                "number": "551199999999",
+                "type" : "celular"
+            },
+            {
+                "number": "551188888888",
+                "type" : "fixo"
+            }
+        ],
+
+        "emails": [
+            {
+                "email": "rns@internet.com.br",
+                "main": true
+            }
+        ],
+        "addresses" : [
+            {
+                "address" : "Rua do Carmo",
+                "number": "52b",
+                "complement" : " apartamento 14, bloco 4d",
+                "zip_code": "99999-999",
+                "billing_address" : true,
+                "type" : "Residência",
+                "observations" : ""
+            },
+            {
+                "address" : "Avenida Paulista",
+                "number": "678",
+                "complement" : "Conjunto 10",
+                "zip_code": "88888-888",
+                "billing_address" : false,
+                "type" : "Trabalho",
+                "observations" : ""
+            },
+            {
+                "address" : "Rua Cardeal Arcoverde",
+                "number": "915",
+                "complement" : "apto 11",
+                "zip_code": "77777-777",
+                "billing_address" : false,
+                "type" : "outros",
+                "observations" : "Casa do irmão"
+            }
+        ]
+    }
+]
