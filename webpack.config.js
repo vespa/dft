@@ -14,7 +14,9 @@ module.exports = {
   resolve:{
       alias:{
         container: path.resolve(__dirname, "src/js/components/container/"),
-        presentational: path.resolve(__dirname, "src/js/components/presentational/")
+        presentational: path.resolve(__dirname, "src/js/components/presentational/"),
+        mock: path.resolve(__dirname, "mock/"),
+
       }
   },
   module: {

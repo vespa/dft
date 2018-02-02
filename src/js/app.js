@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import CSS from '../css/main.scss'
 import 'babel-polyfill'
 import EditableField from 'container/EditableField';
+import 'mock/userProfile.json'
 
 const wrapper = document.getElementById("root");
 
