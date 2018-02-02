@@ -14,7 +14,9 @@ module.exports = {
   resolve:{
       alias:{
         container: path.resolve(__dirname, "src/js/components/container/"),
-        presentational: path.resolve(__dirname, "src/js/components/presentational/")
+        presentational: path.resolve(__dirname, "src/js/components/presentational/"),
+        config: path.resolve(__dirname, "src/js/components/config/"),
+        libs: path.resolve(__dirname, "src/js/libs/"),
       }
   },
   module: {
@@ -52,7 +54,9 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: "./src/index.html",
       filename: "./index.html"
-    }),
-    //new UglifyJsPlugin()
+    })
+    ,new UglifyJsPlugin({uglifyOptions: {
+      compress: true
+    }})
   ]
 };
