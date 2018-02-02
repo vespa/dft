@@ -1,8 +1,9 @@
 [
     {
         "_id" : 305, 
+        "avatar" : "img.jpg",
         "name" : "Rita Noronha Silva",
-        "sex" : "Female",
+        "sex" : "Mulher",
         "cpf" : "22.222.222-2",
         "phone":[
             {
@@ -14,7 +15,6 @@
                 "type" : "fixo"
             }
         ],
-
         "emails": [
             {
                 "email": "rns@internet.com.br",
@@ -48,6 +48,54 @@
                 "billing_address" : false,
                 "type" : "outros",
                 "observations" : "Casa do irmão"
+            }
+        ],
+        "order_history":[
+            {
+                "purchase_date":  "2018-01-02T18:02:54Z",
+                "currency" : "R$",
+                "shipping" : "10,50",
+                "product_list" : [
+                    {
+                        "product" : "Arquivo X - A série completa | Blue Ray",
+                        "current_price" : "99,85",
+                        "reference" : 784112
+                    },
+                    {
+                        "product" : "Camiseta Hering feminina verde",
+                        "current_price" : "50,75",
+                        "reference" : 98758
+                    }
+                ]
+            },
+            {
+                "purchase_date":  "2017-11-02T18:02:54Z",
+                "currency" : "R$",
+                "shipping" : "10,50",
+                "product_list" : [
+                    {
+                        "product" : "Cadeira Giratória Presidente Preta TL-CDE-02-1 ",
+                        "current_price" : "293,90",
+                        "reference" : 8778
+                    }
+                ]
+            }
+        ],
+        "wishilist": [
+            {
+                "product" : "Playstation 4",
+                "reference" : 4548842,
+                "added": "2018-02-02T18:02:54Z"
+            },
+            {
+                "product" : "Adega para vinhos",
+                "reference" : 4548488,
+                "added" : "2017-07-02T19:49Z"
+            },
+{
+                "product" : "Celular Moto Z Play",
+                "reference" : 565656,
+                "added" : "2018-02-02T09:05:66Z"
             }
         ]
     }
