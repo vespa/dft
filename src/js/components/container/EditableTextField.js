@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class EditableField extends Component {
+class EditableTextField extends Component {
   constructor() {
     super();
     this.state = {
@@ -12,15 +12,13 @@ class EditableField extends Component {
     this.switchVisibility = this.switchVisibility.bind(this);
   };
 
-  componentDidMount(){
-
-  }
+  componentDidMount(){}
 
   handleChange(event){
-    this.setState({name: event.target.value});
     event.preventDefault();
+    this.setState({name: event.target.value});
   }
-  
+
   switchVisibility(){
     this.setState({inputVisible: !this.state.inputVisible});
     this.setState({labelVisible: !this.state.labelVisible});
@@ -29,11 +27,11 @@ class EditableField extends Component {
   render() {
     const {name, labelVisible, inputVisible} = this.state;
     const labelStyle = {
-      display: (labelVisible)?'block':'none',
+      display: (labelVisible)? "block":"none",
       cursor: "pointer"
     };
     const inputStyle = {
-      display: (inputVisible)?'block':'none',
+      display: (inputVisible)? "block":"none"
     }
     return (
       <div>
@@ -44,11 +42,11 @@ class EditableField extends Component {
           >
           {name}
         </div>
-        <input type='text' value={name} style={inputStyle} onChange={this.handleChange} onBlur={this.switchVisibility} />
+        <input type="text" value={name} style={inputStyle} onChange={this.handleChange} onBlur={this.switchVisibility} />
       </div>
     );
   }
 }
 
 
-export default EditableField;
+export default EditableTextField;

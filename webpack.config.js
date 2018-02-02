@@ -16,6 +16,7 @@ module.exports = {
         container: path.resolve(__dirname, "src/js/components/container/"),
         presentational: path.resolve(__dirname, "src/js/components/presentational/"),
         mock: path.resolve(__dirname, "mock/"),
+        config: path.resolve(__dirname, "src/js/config/")
 
       }
   },
