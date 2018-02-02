@@ -25,9 +25,7 @@
     "verbose": true,
     "moduleNameMapper": {
       "^container/(.*)": "<rootDir>/src/js/components/container/$1",
-      "^presentational/(.*)": "<rootDir>/src/js/components/presentational/$1",
-      "^config/(.*)": "<rootDir>/src/js/components/config/$1",
-      "^libs/(.*)": "<rootDir>/src/js/libs/$1"
+      "^presentational/(.*)": "<rootDir>/src/js/components/presentational/$1"
     }
   },
   "devDependencies": {
