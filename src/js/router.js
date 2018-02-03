@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+
 import FormUserProfile from 'container/FormUserProfile';
+import AdressList from 'container/AdressList';
+
+
 import {
   BrowserRouter as Router,
   Route,
@@ -16,7 +20,7 @@ const menu = [
     {
         name: "Endereços",
         path: "/adresses",
-        component: FormUserProfile
+        component: AdressList
     },
 ]
 
