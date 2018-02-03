@@ -19,7 +19,6 @@ const FormElement = ({type, value, onChange, onBlur, style, options, removeline}
            return <FormElementInput {...common} />;
     }
 }
-  
 FormElement.propTypes = {
    type: PropTypes.string.isRequired,
    value: PropTypes.oneOfType([

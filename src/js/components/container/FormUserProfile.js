@@ -64,11 +64,3 @@ class FormUserProfile extends Component {
   }
 }
 export default FormUserProfile;
-      // return <EditableField key={values.value} {...values} removeline={()=>{
-      //       this.removeLine(values)}
-      //     }/>
-     // <div>
-     //   {fields.map((values)=>
-     //    <EditableField key={count++} {...values} />
-     //    )}
-     //  </div>
