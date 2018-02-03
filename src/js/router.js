@@ -7,17 +7,40 @@ import {
   Link
 } from 'react-router-dom'
 
-const AppRouter = () => (
-  <Router>
-    <div>
-      <ul >
-        <li><Link to="/">Perfil</Link></li>
-        <li><Link to="/adressess">Endereços</Link></li>
-      </ul>
+const menu = [
+    {
+        name: "Perfil",
+        path: "/",
+        component: FormUserProfile
+    },
+    {
+        name: "Endereços",
+        path: "/adresses",
+        component: FormUserProfile
+    },
+]
 
-      <Route exact path="/" component={FormUserProfile}/>
-    </div>
-  </Router>
-)
+class AppRouter extends Component {
+  constructor() {
+    super();
+    this.state = {};
+  }
 
-module.exports =AppRouter;
+  componentDidMount(){};
+  render() {
+    return (
+      <Router>
+        <div>
+          <ul >
+            {menu.map(({name, path}) => (<li key={'link_'+path}  ><Link to={path}>{name}</Link></li>) )}
+          </ul>
+          {menu.map(({path, component}) => (<Route exact path={path} component={component} key={'route_'+path} />) )}
+          
+        </div>
+      </Router>
+    );
+  }
+}
+export default AppRouter;
+
+
