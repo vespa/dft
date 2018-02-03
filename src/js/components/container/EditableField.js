@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-
-class EditableTextField extends Component {
+import FormElement from 'presentational/FormElement'
+class EditableField extends Component {
   constructor() {
     super();
     this.state = {
-        name: "Test name",
+        name: "",
+        title: "",
+        type: "",
+        options: [],
         inputVisible: false,
         labelVisible: true,
     };
@@ -12,7 +15,14 @@ class EditableTextField extends Component {
     this.switchVisibility = this.switchVisibility.bind(this);
   };
 
-  componentDidMount(){}
+  componentDidMount(){
+    this.setState({
+      name: this.props.value,
+      title: this.props.title,
+      type: this.props.type,
+      options: this.props.options
+    });
+  }
 
   handleChange(event){
     event.preventDefault();
@@ -25,16 +35,17 @@ class EditableTextField extends Component {
   }
 
   render() {
-    const {name, labelVisible, inputVisible} = this.state;
+    const {name, labelVisible, inputVisible, inputValue, title, type, options} = this.state;
     const labelStyle = {
       display: (labelVisible)? "block":"none",
       cursor: "pointer"
     };
     const inputStyle = {
       display: (inputVisible)? "block":"none"
-    }
+    };
     return (
       <div>
+        <h3>{title}</h3>
  			  <div 
           className="field__current-value"
           style={labelStyle}
@@ -42,11 +53,11 @@ class EditableTextField extends Component {
           >
           {name}
         </div>
-        <input type="text" value={name} style={inputStyle} onChange={this.handleChange} onBlur={this.switchVisibility} />
+        <FormElement style={inputStyle} onChange={this.handleChange} onBlur={this.switchVisibility} value={name} type={type} options={options}/>
       </div>
     );
   }
 }
 
 
-export default EditableTextField;
+export default EditableField;
