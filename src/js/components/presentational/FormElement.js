@@ -4,18 +4,19 @@ import FormElementInput from "./FormElementInput";
 import FormElementSelect from "./FormElementSelect";
 import FormElementPhone from "./FormElementPhone";
 
-const FormElement = (attrs) => {
-    switch(attrs.type){
+const FormElement = ({type, value, onChange, onBlur, style, options, removeline}) => {
+    var common = {type, value, onChange, style, onBlur, options}
+    switch(type){
         case "text" : 
-            return <FormElementInput {...attrs} />;
+            return <FormElementInput {...common} />;
         case "cpf" : 
-            return <FormElementInput {...attrs} />;
+            return <FormElementInput {...common} />;
         case "phonelist" : 
-            return <FormElementPhone {...attrs} />;
+            return <FormElementPhone {...common} removeline={removeline}/>;
         case "select" : 
-            return <FormElementSelect {...attrs} />;
+            return <FormElementSelect {...common} />;
         default:
-           return <FormElementInput {...attrs} />;
+           return <FormElementInput {...common} />;
     }
 }
   

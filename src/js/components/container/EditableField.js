@@ -20,7 +20,8 @@ class EditableField extends Component {
       name: this.props.value,
       title: this.props.title,
       type: this.props.type,
-      options: this.props.options
+      options: this.props.options,
+      removeline: this.props.removeline
     });
   }
 
@@ -31,10 +32,9 @@ class EditableField extends Component {
   switchVisibility(event){
     this.setState({inputVisible: !this.state.inputVisible});
     this.setState({labelVisible: !this.state.labelVisible});
-
   }
   render() {
-    const {name, labelVisible, inputVisible, inputValue, title, type, options} = this.state;
+    const {name, labelVisible, inputVisible, inputValue, title, type, options, removeline} = this.state;
     const labelStyle = {
       display: (labelVisible)? "block":"none",
       cursor: "pointer"
@@ -58,7 +58,10 @@ class EditableField extends Component {
             onBlur={this.switchVisibility} 
             value={name} 
             type={type} 
-            options={options}/>
+            options={options}
+            removeline = {removeline}
+            />
+
       </div>
     );
   }

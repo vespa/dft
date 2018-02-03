@@ -10,7 +10,7 @@ class FormUserProfile extends Component {
         fields: [],
         inputValue: ""
     };
-    this.getFieldType = this.getFieldType.bind(this);
+    this.removeLine = this.removeLine.bind(this);
   }
 
   componentDidMount(){
@@ -19,39 +19,34 @@ class FormUserProfile extends Component {
           item.value = res[item.name];
           let field = this.state.fields.slice(0);
           if(item.type === "phonelist"){
-            console.log(item)
+            item.value.map(phone => {
+              let obj = Object.assign({}, item);
+              obj.value = phone.number;
+              obj.title += " "+phone.type;
+              field.push(obj);
+            });
+          }else{
+            field.push(item);
           }
-          field.push(item);
           this.setState({fields: field});
        })
     })
   };
-
-
-
-  getFieldType(values, count){
-    switch(values.type){
-      case "phonelist" : 
-        return values.value.map(item => {
-          let obj = Object.assign({}, values);
-          obj.value = item.number;
-          obj.title += " "+item.type;
-          return <EditableField key={count++} {...obj} />
-        });
-        return "";
-      default:
-        return <EditableField key={count++} {...values} />
-    }
-  }
-  
+  removeLine(i){
+    // criar alerta para confirmação
+    var arr = this.state.fields.slice(0);
+    console.log(arr)
+    arr.splice(i, 1);
+    this.setState({fields: arr});
+  };
   render() {
     let count = 0;
     const {fields} = this.state;
     return (
       <div>
-       {fields.map((values)=> {
+       {fields.map((values,i)=> {
           count++;
-          return this.getFieldType(values, count)
+          return <EditableField key={count++} {...values} removeline={()=>{this.removeLine(i)}}/>
        })}
       </div>
     );
