@@ -3,6 +3,7 @@ import EditableField from 'container/EditableField';
 import { CompleteData } from "config/config"; 
 import UserProfile from 'forms/user-profile';
 import FormElementImage from "presentational/FormElementImage";
+import FormAddNewPhone from "container/formElements/FormAddNewPhone"
 
 class FormUserProfile extends Component {
   constructor() {
@@ -12,13 +13,19 @@ class FormUserProfile extends Component {
         inputValue: ""
     };
     this.removeLine = this.removeLine.bind(this);
+    this.updatePhoneList = this.updatePhoneList.bind(this);
   }
 
   componentDidMount(){
     CompleteData().then(res =>{
-       UserProfile.map(item => {
+        let field = this.state.fields.slice(0);
+        UserProfile.map(item => {
+          if(typeof res[item.name] === "undefined" || res[item.name].length === 0) {
+              field.push(item);
+              return true;
+          }
           item.value = res[item.name];
-          let field = this.state.fields.slice(0);
+
           if(item.type === "phonelist"){
             item.value.map(phone => {
               let obj = Object.assign({}, item);
@@ -26,11 +33,11 @@ class FormUserProfile extends Component {
               obj.title += " "+phone.type;
               field.push(obj);
             });
-          }else{
-            field.push(item);
+            return true;
           }
-          this.setState({fields: field});
-       })
+          field.push(item);
+       });
+       this.setState({fields: field});
     })
   };
 
@@ -42,9 +49,23 @@ class FormUserProfile extends Component {
     }
   };
 
+  updatePhoneList(item, nItem){
+    const newState = this.state.fields.slice();
+    // VALIDAR SE JÁ EXISTE
+    if (newState.indexOf(item) > -1) {
+      newState.splice(newState.indexOf(item), 0, nItem);
+      this.setState({fields: newState})
+    }
+  }
   getFieldByType(values){
     if(values.type=== "image"){
       return <FormElementImage value={values.value} key={values.value}/>
+    }
+    if(values.type=== "addNewPhone"){
+      return <FormAddNewPhone value={values.value} key={values.value} updatePhoneList={this.updatePhoneList} elem={values} />
+    }
+    if(values.type=== "phonelist"){
+      
     }
     return <EditableField key={values.value} {...values} removeline={()=>{
             this.removeLine(values)}

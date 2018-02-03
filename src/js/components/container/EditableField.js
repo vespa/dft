@@ -29,10 +29,12 @@ class EditableField extends Component {
     event.preventDefault();
     this.setState({name: event.target.value});
   }
+
   switchVisibility(event){
     this.setState({inputVisible: !this.state.inputVisible});
     this.setState({labelVisible: !this.state.labelVisible});
   }
+  
   render() {
     const {name, labelVisible, inputVisible, inputValue, title, type, options, removeline} = this.state;
     const labelStyle = {

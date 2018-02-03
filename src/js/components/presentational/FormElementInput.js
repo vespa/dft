@@ -1,9 +1,9 @@
 import React from "react";
 const FormElementInput = (attrs) => {
-    return  <div>
+    return  <span>
                 <input  {...attrs} />
                 <button  style={attrs.style} onClick={attrs.onBlur} > save </button>
-            </div>
+            </span>
 
 };
 export default FormElementInput;
