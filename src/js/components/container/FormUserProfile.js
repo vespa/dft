@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EditableField from 'container/EditableField';
 import { CompleteData } from "config/config"; 
 import UserProfile from 'forms/user-profile';
+import FormElementImage from "presentational/FormElementImage";
 
 class FormUserProfile extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class FormUserProfile extends Component {
        })
     })
   };
+
   removeLine(item){
    const newState = this.state.fields.slice();
     if (newState.indexOf(item) > -1) {
@@ -39,24 +41,32 @@ class FormUserProfile extends Component {
       this.setState({fields: newState})
     }
   };
+
+  getFieldByType(values){
+    if(values.type=== "image"){
+      return <FormElementImage value={values.value} key={values.value}/>
+    }
+    return <EditableField key={values.value} {...values} removeline={()=>{
+            this.removeLine(values)}
+          }/>
+  }
+
   render() {
     let count = 0;
     const {fields} = this.state;
     return (
       <div>
        {fields.map((values,i)=> {
-          count++;
-          var index = i;
-          return <EditableField key={values.value} {...values} removeline={()=>{
-            this.removeLine(values)}
-          }/>
+         return this.getFieldByType(values)
        })}
       </div>
     );
   }
 }
 export default FormUserProfile;
-
+      // return <EditableField key={values.value} {...values} removeline={()=>{
+      //       this.removeLine(values)}
+      //     }/>
      // <div>
      //   {fields.map((values)=>
      //    <EditableField key={count++} {...values} />
