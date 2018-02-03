@@ -13,8 +13,8 @@ class EditableField extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.switchVisibility = this.switchVisibility.bind(this);
-  };
 
+  };
   componentDidMount(){
     this.setState({
       name: this.props.value,
@@ -28,12 +28,11 @@ class EditableField extends Component {
     event.preventDefault();
     this.setState({name: event.target.value});
   }
-
-  switchVisibility(){
+  switchVisibility(event){
     this.setState({inputVisible: !this.state.inputVisible});
     this.setState({labelVisible: !this.state.labelVisible});
-  }
 
+  }
   render() {
     const {name, labelVisible, inputVisible, inputValue, title, type, options} = this.state;
     const labelStyle = {
@@ -45,7 +44,7 @@ class EditableField extends Component {
     };
     return (
       <div>
-        <h3>{title}</h3>
+        <h5>{title}</h5>
  			  <div 
           className="field__current-value"
           style={labelStyle}
@@ -53,7 +52,13 @@ class EditableField extends Component {
           >
           {name}
         </div>
-        <FormElement style={inputStyle} onChange={this.handleChange} onBlur={this.switchVisibility} value={name} type={type} options={options}/>
+        <FormElement 
+            style={inputStyle} 
+            onChange={this.handleChange} 
+            onBlur={this.switchVisibility} 
+            value={name} 
+            type={type} 
+            options={options}/>
       </div>
     );
   }

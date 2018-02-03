@@ -5,7 +5,7 @@
         "name" : "Rita Noronha Silva",
         "sex" : "Feminino",
         "cpf" : "22.222.222-2",
-        "phone":[
+        "phones":[
             {
                 "number": "551199999999",
                 "type" : "celular"

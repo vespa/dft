@@ -1,39 +1,33 @@
 import React from "react";
 import PropTypes from "prop-types";
+import FormElementInput from "./FormElementInput";
+import FormElementSelect from "./FormElementSelect";
+import FormElementPhone from "./FormElementPhone";
 
-const FormElement = ({value, onChange, onBlur, style, type, options}) => {
-	console.log(options)
-	const attrs = {value, onChange, onBlur, style, type};
-	const input = () => <input  {...attrs} />;
-	const select = (options) =>{
-		let count = 0;
-		return <select {...attrs}>
-			       {options.map((item)=>
-			        	<option key={count++} value={item}>{item}</option>
-			        )}
-				</select>
-	}
-	switch(type){
-		case "text" : 
-			return input();
-		case "cpf" : 
-			return input();
-		case "select" : 
-			return select(options)
-		default:
-			return input()
-	}
+const FormElement = (attrs) => {
+    switch(attrs.type){
+        case "text" : 
+            return <FormElementInput {...attrs} />;
+        case "cpf" : 
+            return <FormElementInput {...attrs} />;
+        case "phonelist" : 
+            return <FormElementPhone {...attrs} />;
+        case "select" : 
+            return <FormElementSelect {...attrs} />;
+        default:
+           return <FormElementInput {...attrs} />;
+    }
 }
   
-;
-
-
-
 FormElement.propTypes = {
    type: PropTypes.string.isRequired,
-   value: PropTypes.string.isRequired,
+   value: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.array
+    ]).isRequired,
    onChange: PropTypes.func.isRequired,
    onBlur: PropTypes.func.isRequired,
+   options: PropTypes.array,
 }
 
 export default FormElement;
