@@ -4,7 +4,6 @@ const onlyNumbers = (event) => {
 	if(/\D/.test(event.key)) event.preventDefault();
 }
 const FormElementPhone = ({type, value, onChange, onBlur, style, options, removeline}) => {
-	console.log(removeline)
 	var attrs = {type, value, onChange, onBlur, style, options}
     return  <div>
                 <input  {...attrs} onKeyPress={onlyNumbers}/>

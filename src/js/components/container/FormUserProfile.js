@@ -32,12 +32,12 @@ class FormUserProfile extends Component {
        })
     })
   };
-  removeLine(i){
-    // criar alerta para confirmação
-    var arr = this.state.fields.slice(0);
-    console.log(arr)
-    arr.splice(i, 1);
-    this.setState({fields: arr});
+  removeLine(item){
+   const newState = this.state.fields.slice();
+    if (newState.indexOf(item) > -1) {
+      newState.splice(newState.indexOf(item), 1);
+      this.setState({fields: newState})
+    }
   };
   render() {
     let count = 0;
@@ -46,7 +46,10 @@ class FormUserProfile extends Component {
       <div>
        {fields.map((values,i)=> {
           count++;
-          return <EditableField key={count++} {...values} removeline={()=>{this.removeLine(i)}}/>
+          var index = i;
+          return <EditableField key={values.value} {...values} removeline={()=>{
+            this.removeLine(values)}
+          }/>
        })}
       </div>
     );
