@@ -81,22 +81,30 @@
                 ]
             }
         ],
-        "wishilist": [
-            {
-                "product" : "Playstation 4",
-                "reference" : 4548842,
-                "added": "2018-02-02T18:02:54Z"
-            },
-            {
-                "product" : "Adega para vinhos",
-                "reference" : 4548488,
-                "added" : "2017-07-02T19:49Z"
-            },
-{
-                "product" : "Celular Moto Z Play",
-                "reference" : 565656,
-                "added" : "2018-02-02T09:05:66Z"
-            }
+        "wishlist": {
+            "total": 34,
+            "page" : 3,
+            "limit" : 5,
+            "list" : [
+                {
+                    "product" : "Playstation 4",
+                    "img" : "img/playstation4.jpg",
+                    "reference" : 4548842,
+                    "added": "2018-02-02T18:02:54Z"
+                },
+                {
+                    "product" : "Adega para vinhos",
+                    "reference" : 4548488,
+                    "img" : "img/adega.jpg",
+                    "added" : "2017-07-02T19:49Z"
+                },
+                {
+                    "product" : "Celular Moto Z Play",
+                    "reference" : 565656,
+                    "img" : "img/playstation4.jpg",
+                    "added" : "2018-02-02T09:05:16Z"
+                }
         ]
+        }
     }
 ]
