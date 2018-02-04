@@ -2,8 +2,11 @@ import React from "react";
 const FormElementSelect = (attrs) =>{
     let count = 0;
     return <select {...attrs}>
-               {attrs.options.map((item)=>
-                    <option key={count++} value={item}>{item}</option>
+               {attrs.options.map((item)=>{
+               		 var name = (item.constructor === String)? item : (item)? "sim":"não";
+               		 var value = item;
+	               	 return <option key={count++} value={value}>{name}</option>
+	               }
                 )}
             </select>
 }
