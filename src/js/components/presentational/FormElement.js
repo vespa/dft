@@ -3,12 +3,15 @@ import PropTypes from "prop-types";
 import FormElementInput from "./FormElementInput";
 import FormElementSelect from "./FormElementSelect";
 import FormElementPhone from "./FormElementPhone";
+import FormElementTextArea from "./FormElementTextArea";
 
 const FormElement = ({type, value, onChange, onBlur, style, options, removeline}) => {
     var common = {type, value, onChange, style, onBlur, options}
     switch(type){
         case "text" : 
             return <FormElementInput {...common} />;
+        case "textarea":
+            return <FormElementTextArea  {...common} />;
         case "cpf" : 
             return <FormElementInput {...common} />;
         case "phonelist" : 
