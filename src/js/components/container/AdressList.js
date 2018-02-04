@@ -9,6 +9,7 @@ class AdressList extends Component {
     this.state = {
       adresses: []
     };
+    this.removeLine = this.removeLine.bind(this);
   }
 
   createList(items){
@@ -24,10 +25,33 @@ class AdressList extends Component {
       this.createList(res);
     })
   };
-  isBillingAdress(billing){
 
+  isBillingAdress(billing){
     return (billing)? "sim" : "não";
   }
+
+  removeLine(item){
+    var that = this;
+    return function(){
+      const newState = that.state.adresses.slice();
+      if (newState.indexOf(item) > -1) {
+        newState.splice(newState.indexOf(item), 1);
+        that.setState({adresses: newState})
+      }
+    }
+  }
+
+  printObservations(observations){
+    return (observations.replace(/\s/g, "")==="")?""
+          : <EditableField  
+              value={observations}
+              type="textarea"
+              title="Observações"
+            /> 
+  }
+
+
+
   render() {
     const {adresses} = this.state;
     let count = 0;
@@ -36,6 +60,7 @@ class AdressList extends Component {
         {adresses.map(item => {
 
           const {address, number, complement, type, zip_code, observations, billing_address} = item;
+          const options = ["Residencial", "Trabalho", "Outro"];
 
           return <div key={address+"_"+count++} >
                       <EditableField  
@@ -55,25 +80,22 @@ class AdressList extends Component {
                       />
                       <EditableField  
                         value={type}
-                        type="text"
+                        type="select"
                         title="Tipo"
+                        options={options}
                       />
                       <EditableField  
                         value={zip_code}
                         type="text"
                         title="CEP"
                       />
-                      <EditableField  
-                        value={observations}
-                        type="text"
-                        title="Observações"
-                      />
+                      {this.printObservations(observations)}
                      <EditableField  
                         value={this.isBillingAdress(billing_address)}
                         type="text"
                         title="Endereço de cobrança"
                       />
-                      
+                      <button onClick={this.removeLine(item)}>Excluir Endereço</button>
                       <hr/>
                  </div>;
         })}

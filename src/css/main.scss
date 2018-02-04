@@ -1,1 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.field{
+	&__label{
+		font-weight:bold;
+	}
+}

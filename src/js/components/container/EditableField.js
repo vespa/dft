@@ -46,7 +46,7 @@ class EditableField extends Component {
     };
     return (
       <div>
-        <h5>{title}</h5>
+        <label className="field__label">{title}</label>
  			  <div 
           className="field__current-value"
           style={labelStyle}
