@@ -2,8 +2,8 @@
     {
         "_id" : 305, 
         "avatar" : "https://pbs.twimg.com/profile_images/942517200790974464/t0154DLo_bigger.jpg",
-        "name" : "Rita Noronha Silva",
-        "sex" : "Feminino",
+        "name" : "Danilo",
+        "sex" : "Masculino",
         "cpf" : "22.222.222-2",
         "phones":[
             {
@@ -29,7 +29,7 @@
                 "zip_code": "99999-999",
                 "billing_address" : true,
                 "type" : "Residência",
-                "observations" : ""
+                "observations" : "Em frente à padaria"
             },
             {
                 "address" : "Avenida Paulista",
