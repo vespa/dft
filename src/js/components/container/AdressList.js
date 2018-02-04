@@ -11,6 +11,7 @@ class AdressList extends Component {
       adresses: []
     };
     this.removeLine = this.removeLine.bind(this);
+    this.updateAddressList = this.updateAddressList.bind(this);
   }
 
   createList(items){
@@ -29,6 +30,12 @@ class AdressList extends Component {
 
   isBillingAdress(billing){
     return (billing)? BillingOptions[0] :BillingOptions[1] ;
+  }
+
+  updateAddressList(nItem){
+    const newState = this.state.adresses.slice();
+    newState.unshift(nItem);
+    this.setState({adresses: newState});
   }
 
   removeLine(item){
@@ -55,7 +62,7 @@ class AdressList extends Component {
     let count = 0;
     return (
       <div> 
-       <FormAddNewAddress value="Adicionar novo endereço" />
+       <FormAddNewAddress value="Adicionar novo endereço" updateAddressList={this.updateAddressList}/>
        <hr/>
         {adresses.map(item => {
 

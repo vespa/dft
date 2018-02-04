@@ -1,5 +1,5 @@
 module.exports = {
-	AddressTypeOptions: ["Residencial", "Trabalho", "Outro"],
-	BillingOptions : ["Sim", "Não"],
-	PhoneTypes: ["Fixo", "Celular"]
+	AddressTypeOptions: ["residencial", "trabalho", "outro"],
+	BillingOptions : [true, false],
+	PhoneTypes: ["fixo", "celular"]
 }

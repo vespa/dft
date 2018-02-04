@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import FormElementSelect from "presentational/FormElementSelect";
 import {OnlyNumbers} from "helpers/CommonValidation";
+import { PhoneTypes } from "helpers/CommomValues";
 import PropTypes from "prop-types";
 
-
-const options = ["celular", "fixo"];
 
 class FormAddNewPhone extends Component {
   constructor() {
@@ -15,7 +14,7 @@ class FormAddNewPhone extends Component {
       buttonVisiblity: true,
       updatePhoneList: null,
       newPhone: "",
-      phoneType: options[0],
+      phoneType: PhoneTypes[0],
       elem: null
     };
     this.switchVisibility   = this.switchVisibility.bind(this);
@@ -29,17 +28,18 @@ class FormAddNewPhone extends Component {
       value: this.props.value,
       updatePhoneList: this.props.updatePhoneList || function(){},
       elem: this.props.elem
+    },()=>{
+      this.baseState = this.state;
     })
   };
 
-  switchVisibility(event){
+ switchVisibility(event){
     this.setState({
-      buttonVisiblity: !this.state.buttonVisiblity,
-      newPhone: "",
-      phoneType: options[0]
+      buttonVisiblity: !this.state.buttonVisiblity
     });
-    this.inputTitle.value = "";
+    if(!this.state.buttonVisiblity) this.setState(this.baseState);
   };
+
 
   setNewPhoneNumber(event){
     this.setState({
@@ -76,11 +76,12 @@ class FormAddNewPhone extends Component {
     return (
       <div>
         <div  style={formStyle} > 
-          <FormElementSelect options={options} onChange={this.setNewPhoneType}  /> 
+          <FormElementSelect options={PhoneTypes} onChange={this.setNewPhoneType}  /> 
           <input 
             type="text" 
             onKeyPress={OnlyNumbers} 
             onChange={this.setNewPhoneNumber}
+            value={this.state.newPhone}
             ref={el => this.inputTitle = el}
              />
           <button  onClick={this.updateList} > adiciona </button>

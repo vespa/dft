@@ -26,7 +26,8 @@ FormElement.propTypes = {
    type: PropTypes.string.isRequired,
    value: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.array
+      PropTypes.array,
+      PropTypes.bool
     ]).isRequired,
    onChange: PropTypes.func.isRequired,
    onBlur: PropTypes.func.isRequired,
