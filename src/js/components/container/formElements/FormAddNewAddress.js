@@ -2,20 +2,18 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import FormElementSelect from "presentational/FormElementSelect";
 import {OnlyNumbers} from "helpers/CommonValidation";
+import { PhoneTypes } from "helpers/CommomValues";
 import PropTypes from "prop-types";
 
-
-const options = ["celular", "fixo"];
-
-class FormAddNewPhone extends Component {
+class FormAddNewAddress extends Component {
   constructor() {
     super();
     this.state = {
       value: "",
       buttonVisiblity: true,
-      updatePhoneList: null,
+      updateAdressList: null,
       newPhone: "",
-      phoneType: options[0],
+      phoneType: PhoneTypes[0],
       elem: null
     };
     this.switchVisibility   = this.switchVisibility.bind(this);
@@ -27,7 +25,7 @@ class FormAddNewPhone extends Component {
   componentDidMount(){
     this.setState({
       value: this.props.value,
-      updatePhoneList: this.props.updatePhoneList || function(){},
+      updateAdressList: this.props.updateAdressList || function(){},
       elem: this.props.elem
     })
   };
@@ -36,7 +34,7 @@ class FormAddNewPhone extends Component {
     this.setState({
       buttonVisiblity: !this.state.buttonVisiblity,
       newPhone: "",
-      phoneType: options[0]
+      phoneType: PhoneTypes[0]
     });
     this.inputTitle.value = "";
   };
@@ -54,13 +52,13 @@ class FormAddNewPhone extends Component {
   }
 
   updateList(){
-    var obj = {
-      value:  this.state.newPhone,
-      title: "Telefone " +  this.state.phoneType,
-      name: "phones",
-      type: "phonelist"
-    }
-    this.props.updatePhoneList(this.state.elem, obj);
+    // var obj = {
+    //   value:  this.state.newPhone,
+    //   title: "Telefone " +  this.state.phoneType,
+    //   name: "phones",
+    //   type: "phonelist"
+    // }
+    this.props.updateAdressList(this.state.elem, obj);
     this.switchVisibility();
   }
 
@@ -76,7 +74,7 @@ class FormAddNewPhone extends Component {
     return (
       <div>
         <div  style={formStyle} > 
-          <FormElementSelect options={options} onChange={this.setNewPhoneType}  /> 
+          <FormElementSelect options={PhoneTypes} onChange={this.setNewPhoneType}  /> 
           <input 
             type="text" 
             onKeyPress={OnlyNumbers} 
@@ -91,16 +89,12 @@ class FormAddNewPhone extends Component {
     );
   }
 }
-export default FormAddNewPhone;
+export default FormAddNewAddress;
 
-FormAddNewPhone.propTypes = {
+FormAddNewAddress.propTypes = {
    value: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.array
     ]).isRequired,
 }
 
-// export function FormNewPhone({value}){
-//   const options = ["Fixo", "Celular"];
-
-// }

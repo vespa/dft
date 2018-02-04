@@ -1,5 +1,5 @@
 import React from "react";
-import {OnlyNumbers} from "helpers/commonValidation";
+import {OnlyNumbers} from "helpers/CommonValidation";
 
 const FormElementPhone = ({type, value, onChange, onBlur, style, options, removeline}) => {
 	var attrs = {type, value, onChange, onBlur, style, options}

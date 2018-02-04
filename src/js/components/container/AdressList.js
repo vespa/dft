@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { AdressListData } from "config/config"; 
 import EditableField from 'container/EditableField';
-
+import FormAddNewAddress from "container/formElements/FormAddNewAddress"
+import { AddressTypeOptions, BillingOptions } from "helpers/CommomValues";
 class AdressList extends Component {
   constructor() {
     super();
@@ -27,7 +28,7 @@ class AdressList extends Component {
   };
 
   isBillingAdress(billing){
-    return (billing)? "sim" : "não";
+    return (billing)? BillingOptions[0] :BillingOptions[1] ;
   }
 
   removeLine(item){
@@ -49,20 +50,21 @@ class AdressList extends Component {
               title="Observações"
             /> 
   }
-
-
-
   render() {
     const {adresses} = this.state;
     let count = 0;
     return (
       <div> 
+       <FormAddNewAddress value="Adicionar novo endereço" />
+       <hr/>
         {adresses.map(item => {
 
           const {address, number, complement, type, zip_code, observations, billing_address} = item;
-          const options = ["Residencial", "Trabalho", "Outro"];
+          const options = AddressTypeOptions;
+          const billingOptions = BillingOptions;
 
           return <div key={address+"_"+count++} >
+
                       <EditableField  
                         value={address}
                         type="text"
@@ -92,8 +94,9 @@ class AdressList extends Component {
                       {this.printObservations(observations)}
                      <EditableField  
                         value={this.isBillingAdress(billing_address)}
-                        type="text"
+                        type="select"
                         title="Endereço de cobrança"
+                        options={billingOptions}
                       />
                       <button onClick={this.removeLine(item)}>Excluir Endereço</button>
                       <hr/>
