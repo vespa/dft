@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import FormUserProfile from 'container/FormUserProfile';
 import AdressList from 'container/AdressList';
+import Wishlist from 'container/Wishlist';
 
 
 import {
@@ -22,6 +23,16 @@ const menu = [
         path: "/adresses",
         component: AdressList
     },
+    {
+        name: "Wishlist",
+        path: "/wishlist",
+        component: Wishlist
+    },
+    {
+        name: "Histórico de compras",
+        path: "/history",
+        component: AdressList
+    }
 ]
 
 class AppRouter extends Component {
