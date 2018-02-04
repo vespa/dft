@@ -99,6 +99,8 @@ FormAddNewPhone.propTypes = {
       PropTypes.string,
       PropTypes.array
     ]).isRequired,
+    updatePhoneList: PropTypes.func.isRequired,
+    elem: PropTypes.object.isRequired,
 }
 
 // export function FormNewPhone({value}){

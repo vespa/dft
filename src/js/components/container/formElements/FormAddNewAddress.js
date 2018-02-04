@@ -138,7 +138,6 @@ FormAddNewAddress.propTypes = {
       PropTypes.string,
       PropTypes.array
     ]).isRequired,
-   // updateAdressList: PropTypes.func.isRequired,
-   // elem: PropTypes.object.isRequired,
+    updateAddressList: PropTypes.func.isRequired
 }
 
