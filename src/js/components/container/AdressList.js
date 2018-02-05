@@ -4,6 +4,9 @@ import { AdressListData } from "config/config";
 import EditableField from 'container/EditableField';
 import FormAddNewAddress from "container/formElements/FormAddNewAddress"
 import { AddressTypeOptions, BillingOptions } from "helpers/CommomValues";
+import Modal from "presentational/navElements/Modal"
+
+
 class AdressList extends Component {
   constructor() {
     super();
@@ -70,6 +73,7 @@ class AdressList extends Component {
           const {address, number, complement, type, zip_code, observations, billing_address} = item;
           const options = AddressTypeOptions;
           const billingOptions = BillingOptions;
+          let modalId = "modalAddress"+count;
 
           return <div key={address+"_"+count++} className="product__list">
                     <div className="row">
@@ -122,7 +126,8 @@ class AdressList extends Component {
                         title="Endereço de cobrança"
                         options={billingOptions}
                       />
-                      <button className="btn btn-danger margin-v" onClick={this.removeLine(item)}>Excluir Endereço</button>
+                      <Modal action={this.removeLine(item)} id={modalId} message={"Confirma remoção do endereço em "+address+"?"} />
+                      <button className="btn btn-danger margin-v" data-toggle="modal" data-target={"#"+modalId} >Excluir Endereço</button>
                  </div>;
         })}
       </div>
