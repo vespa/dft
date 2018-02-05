@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import FormUserProfile from 'container/FormUserProfile';
 import AdressList from 'container/AdressList';
 import Wishlist from 'container/Wishlist';
+import OrderHistory from 'container/OrderHistory';
 
 
 import {
@@ -32,7 +33,7 @@ const menu = [
     {
         name: "Histórico de compras",
         path: "/history",
-        component: AdressList
+        component: OrderHistory
     }
 ]
 
@@ -53,7 +54,7 @@ class AppRouter extends Component {
           {menu.map(({path, component}) => (<Route exact path={path} component={component} key={'route_'+path} />) )}
           <Switch>
           <Route  path="/wishlist/:id" component={Wishlist}/>
-          
+
           </Switch>
         </div>
       </Router>

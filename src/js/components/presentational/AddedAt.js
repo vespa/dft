@@ -10,6 +10,6 @@ const AddedAt =({value}) =>{
   const hour = date.getHours();
   const minutes = date.getMinutes()
   const monthList = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro","dezembro"];
-  return <span>Adicionado em {day} de {monthList[month]} de {year} às {normalize(hour)}:{normalize(minutes)} </span>
+  return <span>Realizado em {day} de {monthList[month]} de {year} às {normalize(hour)}:{normalize(minutes)} </span>
 }
 export default AddedAt;

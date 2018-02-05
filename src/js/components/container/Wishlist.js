@@ -30,7 +30,6 @@ class Wishlist extends Component {
   }
 
   callData(){
-    console.log("data")
     WishlistData().then(res=>{
       this.setState({
           products:res.list,
