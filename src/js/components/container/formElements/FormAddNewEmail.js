@@ -12,23 +12,18 @@ class FormAddNewPhone extends Component {
     this.state = {
       value: "",
       buttonVisiblity: true,
-      updatePhoneList: null,
-      newPhone: "",
-      phoneType: PhoneTypes[0],
+      updateItemList:null,
       elem: null
     };
-    this.switchVisibility   = this.switchVisibility.bind(this);
-    this.setNewPhoneType    = this.setNewPhoneType.bind(this);
-    this.setNewPhoneNumber  = this.setNewPhoneNumber.bind(this);
-    this.updateList         = this.updateList.bind(this);
-    this.tryUpdate          = this.tryUpdate.bind(this)
+    this.switchVisibility = this.switchVisibility.bind(this);
+    this.updateList = this.updateList.bind(this)
+    this.tryUpdate = this.tryUpdate.bind(this);
   };
 
   componentDidMount(){
     this.setState({
       value: this.props.value,
-      updatePhoneList: this.props.updatePhoneList || function(){},
-      elem: this.props.elem
+      updateItemList: this.props.updateItemList || function(){}
     },()=>{
       this.baseState = this.state;
     })
@@ -42,34 +37,25 @@ class FormAddNewPhone extends Component {
     if(!this.state.buttonVisiblity) this.setState(this.baseState);
   };
 
-  setNewPhoneNumber(event){
-    this.setState({
-      newPhone: event.target.value
-    })
-  }
-
-  setNewPhoneType(event){
-    this.setState({
-      phoneType: event.target.value
-    })
-  }
-
   updateList(){
-    var obj = {
-      value:  this.state.newPhone,
-      title: "Telefone " +  this.state.phoneType,
-      name: "phones",
-      type: "phonelist"
+    const {value} = this.state;
+    const obj = {value: value, "type" : "emaillist", title: "E-mail"}
+    this.props.updateItemList(obj);
+  }
+
+  setStateValue(name, modifier){
+    var that = this;
+    return function(event){
+      let obj = {}
+      obj[name] = (modifier === undefined)? event.target.value : modifier(event.target.value);
+      that.setState(obj);
     }
-    this.props.updatePhoneList(obj);
-    this.switchVisibility();
   }
 
   tryUpdate(e){
     e.preventDefault();
     this.updateList();
   }
-  
   render() {
     const {value, buttonVisiblity} = this.state;
     const buttonStyle = {
@@ -80,20 +66,18 @@ class FormAddNewPhone extends Component {
       display: (!buttonVisiblity)? "block":"none"
     };
     return (
-      <form  onSubmit={this.tryUpdate}>
+      <form onSubmit={this.tryUpdate}>
         <div  style={formStyle} className="form__row"> 
           <div className="row form-group">
-          <div className="col">
-            <h5>Adicione um novo telefone</h5>
-            <FormElementSelect options={PhoneTypes} onChange={this.setNewPhoneType}  /> 
+            <div className="col">
+            <h5>Adicione um novo email</h5>
             </div>
           </div>
           <div className="row form-group">
               <div className="col">
             <input 
               type="text" 
-              onKeyPress={OnlyNumbers} 
-              onChange={this.setNewPhoneNumber}
+              onChange={this.setStateValue("value")}
               value={this.state.newPhone}
               className="form-control"
               required
@@ -121,10 +105,10 @@ FormAddNewPhone.propTypes = {
       PropTypes.string,
       PropTypes.array
     ]).isRequired,
-    updatePhoneList: PropTypes.func.isRequired
+    updateItemList: PropTypes.func.isRequired
 }
 
-// export function FormNewPhone({value}){
-//   const options = ["Fixo", "Celular"];
+export function FormNewPhone({value}){
+  const options = ["Fixo", "Celular"];
 
-// }
+}

@@ -1,12 +1,12 @@
 import React from "react";
-import {OnlyNumbers} from "helpers/CommonValidation";
+// import {OnlyNumbers} from "helpers/CommonValidation";
 import Modal from "presentational/navElements/Modal"
 
 
 const FormElementPhone = ({type, value, onChange, style, options, removeline}) => {
 	var attrs = {type, value, onChange, style, options}
     var time = new Date().getTime();
-    var id = "removePhone" + time;
+    var id = "removeEmail" + time;
     return  <div className="row">
                 <div className="col-6">
                		<input  {...attrs} className="form-control" required/>

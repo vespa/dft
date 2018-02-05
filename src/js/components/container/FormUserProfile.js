@@ -3,6 +3,9 @@ import EditableField from 'container/EditableField';
 import { CompleteData } from "config/config"; 
 import FormElementImage from "presentational/FormElementImage";
 import FormAddNewPhone from "container/formElements/FormAddNewPhone";
+import FormAddNewEmail from "container/formElements/FormAddNewEmail";
+
+
 
 
 class FormUserProfile extends Component {
@@ -13,7 +16,7 @@ class FormUserProfile extends Component {
         inputValue: ""
     };
     this.removeLine = this.removeLine.bind(this);
-    this.updatePhoneList = this.updatePhoneList.bind(this);
+    this.updateItemList = this.updateItemList.bind(this)
   }
 
   componentDidMount(){
@@ -25,13 +28,20 @@ class FormUserProfile extends Component {
               return true;
           }
           item.value = res[item.name];
-
           if(item.type === "phonelist"){
             item.value.map(phone => {
               let obj = Object.assign({}, item);
               obj.value = phone.number;
               obj.title += " "+phone.type;
               field.push(obj);
+            });
+            return true;
+          }
+          if(item.type === "emaillist"){
+            item.value.map(email => {
+               let obj = Object.assign({}, item);
+               obj.value = email.email;
+               field.push(obj);
             });
             return true;
           }
@@ -49,21 +59,37 @@ class FormUserProfile extends Component {
     }
   };
 
-  updatePhoneList(item, nItem){
-    const newState = this.state.fields.slice();
-    // VALIDAR SE JÁ EXISTE
-    if (newState.indexOf(item) > -1) {
-      newState.splice(newState.indexOf(item), 0, nItem);
-      this.setState({fields: newState})
+  // updatePhoneList(item, nItem){
+  //   const newState = this.state.fields.slice();
+  //   if (newState.indexOf(item) > -1) {
+  //     newState.splice(newState.indexOf(item), 0, nItem);
+  //     this.setState({fields: newState})
+  //   }
+  // }
+
+  updateItemList(item){
+    var that = this;
+    return (nItem) => {
+      const newState = that.state.fields.slice();
+      if (newState.indexOf(item) > -1) {
+        newState.splice(newState.indexOf(item), 0, nItem);
+        that.setState({fields: newState})
+      }
     }
   }
+
   getFieldByType(values){
     if(values.type=== "image"){
       return <FormElementImage value={values.value} />
     }
     if(values.type=== "addNewPhone"){
-      return <FormAddNewPhone value={values.value} updatePhoneList={this.updatePhoneList} elem={values} />
+      return <FormAddNewPhone value={values.value} updatePhoneList={this.updateItemList(values)} />
     }
+
+    if(values.type=== "addNewEmail"){
+      return <FormAddNewEmail value={values.value} updateItemList={this.updateItemList(values)} />
+    }
+
     return <EditableField {...values} removeline={()=>{
             this.removeLine(values)}
           }/>
@@ -91,7 +117,10 @@ const UserProfile = [
   {name: "name" , type: "text", title: "Nome"},
   {name: "sex", type: "select", title: "Sexo", options: ["Feminino", "Masculino"]},
   {name: "cpf", type: "cpf",   title: "CPF"},
+  {name: "emails", type: "emaillist",   title: "E-mail"},
+  {name: "addEmail", type: "addNewEmail",   value: "Adicionar novo e-mail"},
   {name: "phones", type: "phonelist",   title: "Telefone"},
   {name: "addPhone", type: "addNewPhone",   value: "Adicionar novo telefone"}
+
 ];
 export default FormUserProfile;
