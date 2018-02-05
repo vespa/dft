@@ -5,7 +5,7 @@ const FormElementInput = (attrs) => {
                	<input  {...attrs} className="form-control" required/>
                 </div>
                 <div className="padding-v">
-                	 <button className="btn btn-primary" style={attrs.style} > save </button>
+                	 <button className="btn btn-primary" style={attrs.style} > salvar </button>
                 </div>
             </div>
 
