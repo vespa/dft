@@ -69,7 +69,7 @@ class FormAddNewPhone extends Component {
     e.preventDefault();
     this.updateList();
   }
-  
+
   render() {
     const {value, buttonVisiblity} = this.state;
     const buttonStyle = {
@@ -123,8 +123,3 @@ FormAddNewPhone.propTypes = {
     ]).isRequired,
     updatePhoneList: PropTypes.func.isRequired
 }
-
-// export function FormNewPhone({value}){
-//   const options = ["Fixo", "Celular"];
-
-// }

@@ -71,8 +71,8 @@ module.exports = {
     new CopyWebpackPlugin([
         { from: './src/img/' , to: "img/"}
     ])
-    // ,new UglifyJsPlugin({uglifyOptions: {
-    //   compress: true
-    // }})
+    ,new UglifyJsPlugin({uglifyOptions: {
+      compress: true
+    }})
   ]
 };

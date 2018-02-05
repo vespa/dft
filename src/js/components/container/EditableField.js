@@ -46,18 +46,18 @@ class EditableField extends Component {
   }
 
   tryUpdate(e){
-    e.preventDefault();
+    if(e) e.preventDefault();
     this.switchVisibility();
   }
 
   render() {
     const {name, labelVisible, inputVisible, inputValue, title, type, options, removeline} = this.state;
     const labelStyle = {
-      display: (labelVisible)? "block":"none",
+      display: (labelVisible)? "":"none",
       cursor: "pointer"
     };
     const inputStyle = {
-      display: (inputVisible)? "block":"none"
+      display: (inputVisible)? "":"none"
     };
     return (
       <form  className="form__row form__row--editable" onClick={this.switchVisibilityCel} onSubmit={this.tryUpdate}>

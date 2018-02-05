@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
-
 import { WishlistData } from "config/config"; 
 import FormElementSelect from "presentational/FormElementSelect";
 import AddedAt from "presentational/AddedAt";
@@ -39,7 +37,7 @@ class Wishlist extends Component {
           url: this.returnUrl(this.props.match.url)
         });
     })
-  }
+  };
   componentDidMount(){
     this.callData()
   };

@@ -5,9 +5,6 @@ import FormElementImage from "presentational/FormElementImage";
 import FormAddNewPhone from "container/formElements/FormAddNewPhone";
 import FormAddNewEmail from "container/formElements/FormAddNewEmail";
 
-
-
-
 class FormUserProfile extends Component {
   constructor() {
     super();
@@ -58,14 +55,6 @@ class FormUserProfile extends Component {
       this.setState({fields: newState})
     }
   };
-
-  // updatePhoneList(item, nItem){
-  //   const newState = this.state.fields.slice();
-  //   if (newState.indexOf(item) > -1) {
-  //     newState.splice(newState.indexOf(item), 0, nItem);
-  //     this.setState({fields: newState})
-  //   }
-  // }
 
   updateItemList(item){
     var that = this;

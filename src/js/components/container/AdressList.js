@@ -100,6 +100,14 @@ class AdressList extends Component {
                           title="Complemento"
                         />
                       </div>
+                      <div className="col-sm-4">
+                        <EditableField  
+                        value={this.isBillingAdress(billing_address)}
+                        type="select"
+                        title="Endereço de cobrança"
+                        options={billingOptions}
+                      />
+                      </div>
                     </div>
                     <div className="row">
                       <div className="col-sm">
@@ -120,12 +128,6 @@ class AdressList extends Component {
                       </div>
                     </div>
                       {this.printObservations(observations)}
-                     <EditableField  
-                        value={this.isBillingAdress(billing_address)}
-                        type="select"
-                        title="Endereço de cobrança"
-                        options={billingOptions}
-                      />
                       <Modal action={this.removeLine(item)} id={modalId} message={"Confirma remoção do endereço em "+address+"?"} />
                       <button className="btn btn-danger margin-v" data-toggle="modal" data-target={"#"+modalId} >Excluir Endereço</button>
                  </div>;

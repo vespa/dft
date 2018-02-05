@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import FormElementSelect from "presentational/FormElementSelect";
+import FormElementSelectSimple from "presentational/FormElementSelectSimple";
 import {OnlyNumbers} from "helpers/CommonValidation";
 import { AddressTypeOptions, BillingOptions } from "helpers/CommomValues";
 import PropTypes from "prop-types";
@@ -90,7 +90,7 @@ class FormAddNewAddress extends Component {
                    <div className="row form-group">
                     <div className="col-sm-4">
                       <label className="field__label">Tipo</label>
-                      <FormElementSelect 
+                      <FormElementSelectSimple 
                           options={AddressTypeOptions}  
                           onChange={this.setStateValue("type")}
                       /> 
@@ -141,7 +141,7 @@ class FormAddNewAddress extends Component {
                     </div>
                     <div className="col-sm-6">
                         <label className="field__label">Endereço de cobrança</label>
-                            <FormElementSelect 
+                            <FormElementSelectSimple 
                                 options={BillingOptions}  
                                 onChange={this.setStateValue("billing_address", Boolean)}
                             /> 

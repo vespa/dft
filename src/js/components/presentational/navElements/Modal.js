@@ -22,7 +22,6 @@ const Modal = ({action, id, message}) => {
               </div>
             </div>
         </div>
-
 };
 export default Modal;
 Modal.propTypes = {
