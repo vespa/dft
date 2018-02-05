@@ -62,42 +62,59 @@ class AdressList extends Component {
     let count = 0;
     return (
       <div> 
-       <FormAddNewAddress value="Adicionar novo endereço" updateAddressList={this.updateAddressList}/>
-       <hr/>
+        <div className="product__list">
+          <FormAddNewAddress value="Adicionar novo endereço" updateAddressList={this.updateAddressList}/>
+        </div>
         {adresses.map(item => {
 
           const {address, number, complement, type, zip_code, observations, billing_address} = item;
           const options = AddressTypeOptions;
           const billingOptions = BillingOptions;
 
-          return <div key={address+"_"+count++} >
+          return <div key={address+"_"+count++} className="product__list">
+                    <div className="row">
+                      <div className="col-sm">
+                        <EditableField  
+                          value={address}
+                          type="text"
+                          title="Logradouro"
+                        />
+                      </div>
+                        <div className="col-sm-4">
+                        <EditableField  
+                          value={number}
+                          type="text"
+                          title="número"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm">
+                        <EditableField  
+                          value={complement}
+                          type="text"
+                          title="Complemento"
+                        />
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-sm">
 
-                      <EditableField  
-                        value={address}
-                        type="text"
-                        title="Endereço"
-                      />
-                      <EditableField  
-                        value={number}
-                        type="text"
-                        title="número"
-                      />
-                      <EditableField  
-                        value={complement}
-                        type="text"
-                        title="Complemento"
-                      />
-                      <EditableField  
-                        value={type}
-                        type="select"
-                        title="Tipo"
-                        options={options}
-                      />
-                      <EditableField  
-                        value={zip_code}
-                        type="text"
-                        title="CEP"
-                      />
+                        <EditableField  
+                          value={type}
+                          type="select"
+                          title="Tipo"
+                          options={options}
+                        />
+                      </div>
+                      <div className="col-sm-4">
+                        <EditableField  
+                          value={zip_code}
+                          type="text"
+                          title="CEP"
+                        />
+                      </div>
+                    </div>
                       {this.printObservations(observations)}
                      <EditableField  
                         value={this.isBillingAdress(billing_address)}
@@ -105,8 +122,7 @@ class AdressList extends Component {
                         title="Endereço de cobrança"
                         options={billingOptions}
                       />
-                      <button onClick={this.removeLine(item)}>Excluir Endereço</button>
-                      <hr/>
+                      <button className="btn btn-danger margin-v" onClick={this.removeLine(item)}>Excluir Endereço</button>
                  </div>;
         })}
       </div>

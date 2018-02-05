@@ -73,60 +73,80 @@ class FormAddNewAddress extends Component {
     return (
       <div>
         <div  style={formStyle} > 
-          <label className="field__label">Tipo</label>
-          <FormElementSelect 
-              options={AddressTypeOptions}  
-              onChange={this.setStateValue("type")}
-          /> 
+          <div className="row form-group">
+            <div className="col-sm-4">
+              <label className="field__label">Tipo</label>
+              <FormElementSelect 
+                  options={AddressTypeOptions}  
+                  onChange={this.setStateValue("type")}
+              /> 
+            </div>
+            <div className="col">
+            <label className="field__label">Logradouro</label>
+              <input 
+                type="text" 
+                onChange={this.setStateValue("address")}
+                value={this.state.address}
+                className="form-control"
+                 />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col-sm">
+              <label className="field__label">Número</label>
+              <input 
+                type="text" 
+                onChange={this.setStateValue("number")}
+                onKeyPress= {OnlyNumbers}
+                value={this.state.number}
+                  className="form-control"
+                 />
+            </div>
+            <div className="col-sm">
+                <label className="field__label">Complemento</label>
+                <input 
+                  type="text" 
+                    onChange={this.setStateValue("complement")}
+                    value={this.state.complement}
+                    className="form-control"
+                   />
+            </div>
+          </div>
+          <div className="row form-group">
+            <div className="col">
+                <label className="field__label">CEP</label>
+                <input 
+                  type="text" 
+                    onChange={this.setStateValue("zip_code")}
+                    value={this.state.zip_code}
+                    className="form-control"
+                   />
+            </div>
+            <div className="col-sm-6">
+                <label className="field__label">Endereço de cobrança</label>
+                    <FormElementSelect 
+                        options={BillingOptions}  
+                        onChange={this.setStateValue("billing_address", Boolean)}
+                    /> 
+              </div>
+          </div>
+          <div className="row form-group">
+              <div className="col-sm-6">
+                <label className="field__label">Observações</label>
+                  <textarea 
+                  type="text" 
+                  onChange={this.setStateValue("observations")}
+                  value={this.state.observations}
+                  className="form-control"
+                 />
 
-          <label className="field__label">Endereço</label>
-          <input 
-            type="text" 
-            onChange={this.setStateValue("address")}
-            value={this.state.address}
-             />
+            </div>
+          </div>
 
-          <label className="field__label">Número</label>
-          <input 
-            type="text" 
-            onChange={this.setStateValue("number")}
-            onKeyPress= {OnlyNumbers}
-            value={this.state.number}
-             />
-
-          <label className="field__label">Complemento</label>
-          <input 
-            type="text" 
-            onChange={this.setStateValue("complement")}
-            value={this.state.complement}
-             />
-
-          <label className="field__label">CEP</label>
-          <input 
-            type="text" 
-            onChange={this.setStateValue("zip_code")}
-            value={this.state.zip_code}
-             />
-
-          <label className="field__label">Observações</label>
-          <textarea 
-            type="text" 
-            onChange={this.setStateValue("observations")}
-            value={this.state.observations}
-             />
-
-
-
-         <label className="field__label">Endereço de cobrança</label>
-                <FormElementSelect 
-                    options={BillingOptions}  
-                    onChange={this.setStateValue("billing_address", Boolean)}
-                /> 
-
-          <button  onClick={this.updateList} > adiciona </button>
-          <button  onClick={this.switchVisibility} > cancela </button>
+          <button  onClick={this.updateList}  className="btn btn-primary margin-h"> adiciona </button>
+          <button  onClick={this.switchVisibility} className="btn btn-danger margin-h"> cancela </button>
         </div>
-        <button style={buttonStyle} onClick={this.switchVisibility} > {value} </button>
+        <button style={buttonStyle} onClick={this.switchVisibility} className="btn btn-primary"> {value} </button>
       </div>
     );
   }

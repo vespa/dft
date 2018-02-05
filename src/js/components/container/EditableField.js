@@ -13,7 +13,7 @@ class EditableField extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.switchVisibility = this.switchVisibility.bind(this);
-
+    this.switchVisibilityCel = this.switchVisibilityCel.bind(this);
   };
   componentDidMount(){
     this.setState({
@@ -21,7 +21,7 @@ class EditableField extends Component {
       title: this.props.title,
       type: this.props.type,
       options: this.props.options,
-      removeline: this.props.removeline
+      removeline: this.props.removeline,
     });
   }
 
@@ -30,11 +30,19 @@ class EditableField extends Component {
     this.setState({name: event.target.value});
   }
 
-  switchVisibility(event){
+  switchVisibility(){
     this.setState({inputVisible: !this.state.inputVisible});
     this.setState({labelVisible: !this.state.labelVisible});
   }
-  
+  switchVisibilityCel(){
+    if(!this.state.inputVisible) this.switchVisibility();
+  }
+  isBoolean(name){
+    if(name.constructor === Boolean){
+      return (name)? "sim" : "não"
+    }
+    return name;
+  }
   render() {
     const {name, labelVisible, inputVisible, inputValue, title, type, options, removeline} = this.state;
     const labelStyle = {
@@ -45,14 +53,13 @@ class EditableField extends Component {
       display: (inputVisible)? "block":"none"
     };
     return (
-      <div>
+      <div  className="form__row form__row--editable" onClick={this.switchVisibilityCel}>
         <label className="field__label">{title}</label>
  			  <div 
           className="field__current-value"
           style={labelStyle}
-          onClick={this.switchVisibility}
           >
-          {name}
+          {this.isBoolean(name)}
         </div>
         <FormElement 
             style={inputStyle} 

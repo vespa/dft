@@ -1,8 +1,8 @@
 [
     {
         "_id" : 305, 
-        "avatar" : "https://pbs.twimg.com/profile_images/942517200790974464/t0154DLo_bigger.jpg",
-        "name" : "Danilo",
+
+        "name" : "Danilo Costa Vespa",
         "sex" : "Masculino",
         "cpf" : "22.222.222-2",
         "phones":[
@@ -54,6 +54,7 @@
             {
                 "purchase_date":  "2018-01-02T18:02:54Z",
                 "currency" : "R$",
+                "code" : 565656,
                 "shipping" : "10,50",
                 "product_list" : [
                     {
@@ -71,6 +72,7 @@
             {
                 "purchase_date":  "2017-11-02T18:02:54Z",
                 "currency" : "R$",
+                "code" : 956213,
                 "shipping" : "10,50",
                 "product_list" : [
                     {

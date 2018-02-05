@@ -15,7 +15,6 @@ class OrderHistory extends Component {
 
   callData(){
     OrderHistoryData().then(res=>{
-      console.log(res[0])
       this.setState({
           history :res,
         });
@@ -30,10 +29,10 @@ class OrderHistory extends Component {
     const {history} = this.state;
     return (
       <div className="container-fluid">
-          {history.map(({purchase_date, currency, shipping, product_list})=>{
+          {history.map(({purchase_date, currency, shipping, product_list, code})=>{
             return <div key={"hist"+count++} className="product__list">
                       <div className="row">
-                        <div className="col"> <h5 className="product__title">Pedido</h5> </div>
+                        <div className="col"> <h5 className="product__title">Pedido {code}</h5> </div>
                       </div>
                       <div className="row">
                         <h6 className="product__added col" ><AddedAt value={purchase_date} /></h6>

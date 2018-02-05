@@ -60,15 +60,12 @@ class FormUserProfile extends Component {
   }
   getFieldByType(values){
     if(values.type=== "image"){
-      return <FormElementImage value={values.value} key={values.value}/>
+      return <FormElementImage value={values.value} />
     }
     if(values.type=== "addNewPhone"){
-      return <FormAddNewPhone value={values.value} key={values.value} updatePhoneList={this.updatePhoneList} elem={values} />
+      return <FormAddNewPhone value={values.value} updatePhoneList={this.updatePhoneList} elem={values} />
     }
-    if(values.type=== "phonelist"){
-      
-    }
-    return <EditableField key={values.value} {...values} removeline={()=>{
+    return <EditableField {...values} removeline={()=>{
             this.removeLine(values)}
           }/>
   }
@@ -77,9 +74,12 @@ class FormUserProfile extends Component {
     let count = 0;
     const {fields} = this.state;
     return (
-      <div>
+      <div className="profile__container">
+      <div className="row">
+        <div className="col"> <h1 className="product__title">Perfil de usuário</h1> </div>
+       </div>
        {fields.map((values,i)=> {
-         return this.getFieldByType(values)
+         return <div  key={values.value+i} >{this.getFieldByType(values)}</div>
        })}
       </div>
     );

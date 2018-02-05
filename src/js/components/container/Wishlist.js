@@ -59,7 +59,7 @@ class Wishlist extends Component {
 
     let count = 0;
     return (
-      <div className="container-fluid">
+      <div>
         {this.showing()}
           <div className="row">
           {products.map(({product, img, added})=>{

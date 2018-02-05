@@ -22,6 +22,7 @@ module.exports = {
         forms: path.resolve(__dirname, "src/js/forms/"),
         config: path.resolve(__dirname, "src/js/config/"),
         helpers: path.resolve(__dirname, "src/js/helpers/")
+
       }
   },
   module: {
@@ -33,6 +34,13 @@ module.exports = {
           name: '[path][name].[ext]?[hash]',
         }   
       },
+      {
+            test: require.resolve('jquery'),
+            use: [{
+                loader: 'expose-loader',
+                options: '$'
+            }]
+        },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']          

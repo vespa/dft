@@ -1,24 +1,66 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 $gray: #ccc;
+$gray-soft:#eee;
 $title_color: #f60;
+%common-border{
+    border: 1px solid $gray;
+    margin: 1rem;
+    padding:1rem;
+    border-radius: 5px;
+}
+
+.app{
+    margin: 5rem auto;
+    max-width: 60rem;
+}
 .field{
-	&__label{
-		font-weight:bold;
-		display:block
-	}
+    &__label{
+        font-weight:bold;
+        display:block;
+        cursor: pointer;
+    }
+}
+.margin-h{
+    margin: 0 1rem 0 0;
+}
+.margin-v{
+    margin: 1rem 0;
+}
+
+.form{
+    &__row{
+        border-bottom: 1px solid $gray;
+        padding: 2rem 1rem;
+        cursor: pointer;
+        &--editable{
+            background-color:#fff;
+            transition: background .5s;
+            &:hover{
+                background-color: $gray-soft;
+            }
+        }
+    }
+
+}
+.address{
+    &__container{
+        @extend %common-border;
+    }
+}
+.profile{
+    &__container{
+        @extend %common-border;
+    }
 }
 
 .product{
-	&__title{
-		color: $title_color
-	}
-	&__added{
-		font-size: 0.6rem ;
-	}
-	&__item, &__list{
-		border: 1px solid $gray;
-		margin: 1rem;
-		padding:1rem;
-		border-radius: 6px;
-	}
+    &__title{
+        color: $title_color
+    }
+    &__added{
+        font-size: 0.6rem ;
+    }
+    &__item, &__list{
+        @extend %common-border;
+    }
 }

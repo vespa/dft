@@ -75,19 +75,34 @@ class FormAddNewPhone extends Component {
     };
     return (
       <div>
-        <div  style={formStyle} > 
-          <FormElementSelect options={PhoneTypes} onChange={this.setNewPhoneType}  /> 
-          <input 
-            type="text" 
-            onKeyPress={OnlyNumbers} 
-            onChange={this.setNewPhoneNumber}
-            value={this.state.newPhone}
-            ref={el => this.inputTitle = el}
-             />
-          <button  onClick={this.updateList} > adiciona </button>
-          <button  onClick={this.switchVisibility} > cancela </button>
+        <div  style={formStyle} className="form__row"> 
+          <div className="row form-group">
+          <div className="col">
+            <h5>Adicione um novo telefone</h5>
+            <FormElementSelect options={PhoneTypes} onChange={this.setNewPhoneType}  /> 
+            </div>
+          </div>
+          <div className="row form-group">
+              <div className="col">
+            <input 
+              type="text" 
+              onKeyPress={OnlyNumbers} 
+              onChange={this.setNewPhoneNumber}
+              value={this.state.newPhone}
+              className="form-control"
+               />
+             </div>
+            <div className="margin-h">
+             <button  onClick={this.updateList} className="btn btn-primary"> adiciona </button>
+            </div>
+             <div className="margin-h">
+                <button  onClick={this.switchVisibility} className="btn btn-danger"> cancela </button>
+            </div>
+          </div>
         </div>
-        <button style={buttonStyle} onClick={this.switchVisibility} > {value} </button>
+        <div className="row margin-v margin-h">
+          <button style={buttonStyle} onClick={this.switchVisibility} className="btn btn-primary"> {value} </button>
+        </div>
       </div>
     );
   }
