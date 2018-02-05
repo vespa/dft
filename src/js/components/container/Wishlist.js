@@ -1,24 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+
+
 import { WishlistData } from "config/config"; 
 import FormElementSelect from "presentational/FormElementSelect";
-import PropTypes from "prop-types";
-
-
-
-const AddedAt =({value}) =>{
-  const normalize = (value) => {
-    return (Number(value) <=9)? "0"+ value: value;
-  }
-  const date = new Date(value);
-  const day = date.getDate();
-  const month = date.getMonth()
-  const year = date.getFullYear();
-  const hour = date.getHours();
-  const minutes = date.getMinutes()
-  const monthList = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro","dezembro"];
-  return <div>Adicionado em {day} de {monthList[month]} de {year} às {normalize(hour)}: {normalize(minutes)} </div>
-}
+import AddedAt from "presentational/AddedAt";
+import Paginate from "presentational/navElements/paginate"
 
 class Wishlist extends Component {
   constructor() {
@@ -26,38 +13,68 @@ class Wishlist extends Component {
     this.state = {
         products:[],
         page: 0,
-        limit: 0
+        limit: 0,
+        paginate: "",
+        update: new Date()
     };
+    this.callData = this.callData.bind(this);
   };
 
-  componentDidMount(){
+  shouldComponentUpdate(nextProps){
+    return true;
+  }
+
+  returnUrl(url){
+    url = url.match(".[^\/]*")[0]
+    return url;
+  }
+
+  callData(){
+    console.log("data")
     WishlistData().then(res=>{
       this.setState({
           products:res.list,
-          page: Number(res.page),
-          limit: Number(res.limit)
+          page: Number(this.props.match.params.id),
+          limit: Number(res.limit),
+          total: Number(res.total),
+          url: this.returnUrl(this.props.match.url)
         });
     })
+  }
+  componentDidMount(){
+    this.callData()
   };
+
   showing(){
-    const currentEnd = (this.state.page === 1)? this.state.limit+1: this.state.page * (this.state.limit)+1;
-    const currentStart = currentEnd - this.state.limit;
-    return (this.state.page > 0)? <div>exibindo {currentStart} até {currentEnd-1} </div> :"";
+    var page = this.state.page;
+    page = (isNaN(page))? 1 : page;
+    let currentEnd = (this.state.page === 1)? this.state.limit+1: page * (this.state.limit)+1;
+    let currentStart = currentEnd - this.state.limit;
+    currentEnd = currentEnd -1;
+    currentEnd = (currentEnd > this.state.total)? this.state.total : currentEnd;
+    return  <div >Exibindo <b>{currentStart}</b> até <b>{currentEnd}</b> de {this.state.total} </div>;
   }
   render() {
-    const {products} = this.state;
+    const {products, page, limit, total, url} = this.state;
+    const options =  {products, page, limit,total, url};
+
     let count = 0;
     return (
-      <div>
+      <div className="container-fluid">
         {this.showing()}
-        {products.map(({product, img, added})=>{
-          return  <div  key={product+"-"+count++}>
-                    <h2>{product}</h2>
-                    <img src={img} alt={product} />
-                    <AddedAt value={added} />
-                  </div>
+          <div className="row">
+          {products.map(({product, img, added})=>{
+            return  <div  key={product+"-"+count++} className="col product__item">
+                      <h5 className="product__title">{product}</h5>
+                       <h6 className="product__added"><AddedAt value={added} /></h6>
+                      <img src={img} alt={product} style={{width: "10rem"}}/>
+                    </div>
 
-        })}
+          })}
+          </div>
+          <div className="row text-center">
+               <Paginate {...options} update={this.callData}/>
+          </div>
       </div>
     );
   }

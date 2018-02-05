@@ -3,7 +3,8 @@ import EditableField from 'container/EditableField';
 import { CompleteData } from "config/config"; 
 import UserProfile from 'forms/user-profile';
 import FormElementImage from "presentational/FormElementImage";
-import FormAddNewPhone from "container/formElements/FormAddNewPhone"
+import FormAddNewPhone from "container/formElements/FormAddNewPhone";
+
 
 class FormUserProfile extends Component {
   constructor() {
