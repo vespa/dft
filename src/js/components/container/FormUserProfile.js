@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import EditableField from 'container/EditableField';
 import { CompleteData } from "config/config"; 
-import UserProfile from 'forms/user-profile';
 import FormElementImage from "presentational/FormElementImage";
 import FormAddNewPhone from "container/formElements/FormAddNewPhone";
 
@@ -78,11 +77,21 @@ class FormUserProfile extends Component {
       <div className="row">
         <div className="col"> <h1 className="product__title">Perfil de usuário</h1> </div>
        </div>
+  
        {fields.map((values,i)=> {
          return <div  key={values.value+i} >{this.getFieldByType(values)}</div>
        })}
+   
       </div>
     );
   }
 }
+const UserProfile = [
+  {name: "avatar" , type: "image", title: "Avatar"},
+  {name: "name" , type: "text", title: "Nome"},
+  {name: "sex", type: "select", title: "Sexo", options: ["Feminino", "Masculino"]},
+  {name: "cpf", type: "cpf",   title: "CPF"},
+  {name: "phones", type: "phonelist",   title: "Telefone"},
+  {name: "addPhone", type: "addNewPhone",   value: "Adicionar novo telefone"}
+];
 export default FormUserProfile;

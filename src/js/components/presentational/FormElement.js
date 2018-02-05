@@ -5,8 +5,8 @@ import FormElementSelect from "./FormElementSelect";
 import FormElementPhone from "./FormElementPhone";
 import FormElementTextArea from "./FormElementTextArea";
 
-const FormElement = ({type, value, onChange, onBlur, style, options, removeline}) => {
-    var common = {type, value, onChange, style, onBlur, options}
+const FormElement = ({type, value, onChange, style, options, removeline}) => {
+    var common = {type, value, onChange, style, options}
     switch(type){
         case "text" : 
             return <FormElementInput {...common} />;
@@ -30,7 +30,6 @@ FormElement.propTypes = {
       PropTypes.bool
     ]).isRequired,
    onChange: PropTypes.func.isRequired,
-   onBlur: PropTypes.func.isRequired,
    options: PropTypes.array,
 }
 

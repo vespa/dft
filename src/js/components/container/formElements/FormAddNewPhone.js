@@ -42,7 +42,6 @@ class FormAddNewPhone extends Component {
     if(!this.state.buttonVisiblity) this.setState(this.baseState);
   };
 
-
   setNewPhoneNumber(event){
     this.setState({
       newPhone: event.target.value

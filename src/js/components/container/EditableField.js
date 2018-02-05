@@ -14,6 +14,7 @@ class EditableField extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.switchVisibility = this.switchVisibility.bind(this);
     this.switchVisibilityCel = this.switchVisibilityCel.bind(this);
+    this.tryUpdate = this.tryUpdate.bind(this);
   };
   componentDidMount(){
     this.setState({
@@ -43,6 +44,12 @@ class EditableField extends Component {
     }
     return name;
   }
+
+  tryUpdate(e){
+    e.preventDefault();
+    this.switchVisibility();
+  }
+
   render() {
     const {name, labelVisible, inputVisible, inputValue, title, type, options, removeline} = this.state;
     const labelStyle = {
@@ -53,7 +60,7 @@ class EditableField extends Component {
       display: (inputVisible)? "block":"none"
     };
     return (
-      <div  className="form__row form__row--editable" onClick={this.switchVisibilityCel}>
+      <form  className="form__row form__row--editable" onClick={this.switchVisibilityCel} onSubmit={this.tryUpdate}>
         <label className="field__label">{title}</label>
  			  <div 
           className="field__current-value"
@@ -64,14 +71,13 @@ class EditableField extends Component {
         <FormElement 
             style={inputStyle} 
             onChange={this.handleChange} 
-            onBlur={this.switchVisibility} 
             value={name} 
             type={type} 
             options={options}
             removeline = {removeline}
             />
 
-      </div>
+      </form>
     );
   }
 }
