@@ -23,6 +23,7 @@ class FormAddNewAddress extends Component {
     this.setStateValue = this.setStateValue.bind(this);
     this.switchVisibility = this.switchVisibility.bind(this);
     this.updateList = this.updateList.bind(this);
+    this.tryUpdate = this.tryUpdate.bind(this);
   };
 
   componentDidMount(){
@@ -37,6 +38,7 @@ class FormAddNewAddress extends Component {
   };
 
   switchVisibility(event){
+    if(event) event.preventDefault();
     this.setState({
       buttonVisiblity: !this.state.buttonVisiblity
     });
@@ -60,18 +62,23 @@ class FormAddNewAddress extends Component {
     this.switchVisibility();
 
   }
+  
+  tryUpdate(e){
+    e.preventDefault();
+    this.updateList();
+  }
 
   render() {
     const {value, buttonVisiblity} = this.state;
     const buttonStyle = {
-      display: (buttonVisiblity)? "block":"none",
+      display: (buttonVisiblity)? "":"none",
       cursor: "pointer"
     };
     const formStyle = {
-      display: (!buttonVisiblity)? "block":"none"
+      display: (!buttonVisiblity)? "":"none"
     };
     return (
-      <div>
+      <form className="needs-validation" onSubmit={this.tryUpdate}>
         <div  style={formStyle} > 
           <div className="row form-group">
             <div className="col-sm-4">
@@ -88,6 +95,7 @@ class FormAddNewAddress extends Component {
                 onChange={this.setStateValue("address")}
                 value={this.state.address}
                 className="form-control"
+                required
                  />
             </div>
           </div>
@@ -97,9 +105,9 @@ class FormAddNewAddress extends Component {
               <input 
                 type="text" 
                 onChange={this.setStateValue("number")}
-                onKeyPress= {OnlyNumbers}
                 value={this.state.number}
-                  className="form-control"
+                className="form-control"
+                required
                  />
             </div>
             <div className="col-sm">
@@ -109,6 +117,7 @@ class FormAddNewAddress extends Component {
                     onChange={this.setStateValue("complement")}
                     value={this.state.complement}
                     className="form-control"
+                    required
                    />
             </div>
           </div>
@@ -120,6 +129,7 @@ class FormAddNewAddress extends Component {
                     onChange={this.setStateValue("zip_code")}
                     value={this.state.zip_code}
                     className="form-control"
+                    required
                    />
             </div>
             <div className="col-sm-6">
@@ -143,11 +153,12 @@ class FormAddNewAddress extends Component {
             </div>
           </div>
 
-          <button  onClick={this.updateList}  className="btn btn-primary margin-h"> adiciona </button>
-          <button  onClick={this.switchVisibility} className="btn btn-danger margin-h"> cancela </button>
+          <button  type="submit"  className="btn btn-primary margin-h"> adiciona </button>
+          <a  onClick={this.switchVisibility} className="btn btn-danger margin-h" role="button" href="#"> cancela </a>
         </div>
-        <button style={buttonStyle} onClick={this.switchVisibility} className="btn btn-primary"> {value} </button>
-      </div>
+        <a style={buttonStyle} href="#" role="button" onClick={this.switchVisibility} className="btn btn-primary"> {value} </a>
+
+      </form>
     );
   }
 }

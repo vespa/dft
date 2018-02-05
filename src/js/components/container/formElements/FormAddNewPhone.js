@@ -21,6 +21,7 @@ class FormAddNewPhone extends Component {
     this.setNewPhoneType    = this.setNewPhoneType.bind(this);
     this.setNewPhoneNumber  = this.setNewPhoneNumber.bind(this);
     this.updateList         = this.updateList.bind(this);
+    this.tryUpdate          = this.tryUpdate.bind(this)
   };
 
   componentDidMount(){
@@ -34,6 +35,7 @@ class FormAddNewPhone extends Component {
   };
 
  switchVisibility(event){
+    if(event) event.preventDefault();
     this.setState({
       buttonVisiblity: !this.state.buttonVisiblity
     });
@@ -64,6 +66,10 @@ class FormAddNewPhone extends Component {
     this.switchVisibility();
   }
 
+  tryUpdate(e){
+    e.preventDefault();
+    this.updateList();
+  }
   render() {
     const {value, buttonVisiblity} = this.state;
     const buttonStyle = {
@@ -74,7 +80,7 @@ class FormAddNewPhone extends Component {
       display: (!buttonVisiblity)? "block":"none"
     };
     return (
-      <div>
+      <form className="needs-validation" onSubmit={this.tryUpdate}>
         <div  style={formStyle} className="form__row"> 
           <div className="row form-group">
           <div className="col">
@@ -90,10 +96,11 @@ class FormAddNewPhone extends Component {
               onChange={this.setNewPhoneNumber}
               value={this.state.newPhone}
               className="form-control"
+              required
                />
              </div>
             <div className="margin-h">
-             <button  onClick={this.updateList} className="btn btn-primary"> adiciona </button>
+             <button className="btn btn-primary"> adiciona </button>
             </div>
              <div className="margin-h">
                 <button  onClick={this.switchVisibility} className="btn btn-danger"> cancela </button>
@@ -101,9 +108,9 @@ class FormAddNewPhone extends Component {
           </div>
         </div>
         <div className="row margin-v margin-h">
-          <button style={buttonStyle} onClick={this.switchVisibility} className="btn btn-primary"> {value} </button>
+          <a role="button" href="#" style={buttonStyle} onClick={this.switchVisibility} className="btn btn-primary"> {value} </a>
         </div>
-      </div>
+      </form>
     );
   }
 }
