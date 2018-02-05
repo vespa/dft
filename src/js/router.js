@@ -9,6 +9,7 @@ import Wishlist from 'container/Wishlist';
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
   Link
 } from 'react-router-dom'
 
@@ -50,7 +51,10 @@ class AppRouter extends Component {
             {menu.map(({name, path}) => (<li key={'link_'+path}  ><Link to={path}>{name}</Link></li>) )}
           </ul>
           {menu.map(({path, component}) => (<Route exact path={path} component={component} key={'route_'+path} />) )}
+          <Switch>
+          <Route  path="/wishlist/:id" component={Wishlist}/>
           
+          </Switch>
         </div>
       </Router>
     );

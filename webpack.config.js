@@ -7,7 +7,8 @@ module.exports = {
   entry: ["./src/js/app.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "js/[name].js"
+    filename: "js/[name].js",
+    publicPath: "/"
   },
   devServer: {
     contentBase: "./dist",
@@ -21,7 +22,6 @@ module.exports = {
         forms: path.resolve(__dirname, "src/js/forms/"),
         config: path.resolve(__dirname, "src/js/config/"),
         helpers: path.resolve(__dirname, "src/js/helpers/")
-
       }
   },
   module: {
