@@ -60,17 +60,19 @@
                     {
                         "product" : "Arquivo X - A série completa | Blue Ray",
                         "current_price" : "99,85",
-                        "reference" : 784112
+                        "reference" : 784112,
+                        "img" : "/img/arquivox.jpg"
                     },
                     {
                         "product" : "Camiseta Hering feminina verde",
                         "current_price" : "50,75",
-                        "reference" : 98758
+                        "reference" : 98758,
+                        "img" : "/img/hering.jpg"
                     }
                 ]
             },
             {
-                "purchase_date":  "2017-11-02T18:02:54Z",
+                "purchase_date":  "2017-11-12T10:22:54Z",
                 "currency" : "R$",
                 "code" : 956213,
                 "shipping" : "10,50",
@@ -78,7 +80,8 @@
                     {
                         "product" : "Cadeira Giratória Presidente Preta TL-CDE-02-1 ",
                         "current_price" : "293,90",
-                        "reference" : 8778
+                        "reference" : 8778,
+                        "img" : "/img/cadeira.jpg"
                     }
                 ]
             }

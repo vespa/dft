@@ -64,3 +64,13 @@ $title_color: #f60;
         @extend %common-border;
     }
 }
+
+.order{
+    &__product{
+        &__item{
+            border-top: 1px solid $gray-soft;
+            margin:1rem 0;
+            padding:1rem;
+        }
+    }
+}

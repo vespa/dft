@@ -41,23 +41,27 @@ class OrderHistory extends Component {
                         type="Frete"
                         value ={currency +" "+ shipping}
                       />
-                      <div className="product">
-                        {product_list.map(({current_price, product, reference})=>{
-                          return    <div key={"prod"+count++}>
-                                      <hr/>
-                                      <ProductLine 
-                                        type="Produto"
-                                        value ={product}
-                                      />
-                                      <ProductLine 
-                                        type="Preço"
-                                        value ={currency + " "+current_price}
-                                      />
-                                      <ProductLine 
-                                        type="Referência"
-                                        value ={reference}
-                                      />
-                                    </div>
+                      <div className="product  ">
+                        {product_list.map(({current_price, product, reference, img})=>{
+                          return <div key={"prod"+count++} className="row order__product__item">
+                                  <div className="col-sm-3 text-center">
+                                    <img src={img} style={{width:"100%", maxWidth: "10rem", maxHeight: "10rem"}} />
+                                  </div>
+                                  <div className="col-sm">
+                                  <ProductLine 
+                                    type="Produto"
+                                    value ={product}
+                                  />
+                                  <ProductLine 
+                                    type="Preço"
+                                    value ={currency + " "+current_price}
+                                  />
+                                  <ProductLine 
+                                    type="Referência"
+                                    value ={reference}
+                                  />
+                                   </div>
+                                </div>
 
                         })}
                     
